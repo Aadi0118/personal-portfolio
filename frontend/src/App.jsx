@@ -15,6 +15,9 @@ function App() {
             {/* Additional routes will go here: About, Projects, Contact */}
           </Routes>
         </main>
+        <footer className="footer">
+          <p>&copy; 2026 Aditya Kumar SInha</p>
+        </footer>
       </div>
     </Router>
   );

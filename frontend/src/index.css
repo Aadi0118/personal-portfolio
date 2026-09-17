@@ -69,3 +69,14 @@ a {
   flex: 1;
   padding-top: 80px; /* offset for fixed nav */
 }
+
+/* Footer */
+.footer {
+  text-align: center;
+  padding: 2rem;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  border-top: 1px solid var(--glass-border);
+  background-color: var(--bg-secondary);
+  margin-top: auto;
+}
