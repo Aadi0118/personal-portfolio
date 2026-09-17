@@ -110,12 +110,16 @@ const Projects = () => {
                   )}
                   <div className="project-overlay">
                     <div className="project-links">
-                      <a href={project.githubLink} target="_blank" rel="noreferrer" className="icon-link">
-                        <Code size={20} />
-                      </a>
-                      <a href={project.liveLink} target="_blank" rel="noreferrer" className="icon-link">
-                        <ExternalLink size={20} />
-                      </a>
+                      {project.githubLink && project.githubLink !== '#' && (
+                        <a href={project.githubLink} target="_blank" rel="noreferrer" className="icon-link">
+                          <Code size={20} />
+                        </a>
+                      )}
+                      {project.liveLink && project.liveLink !== '#' && (
+                        <a href={project.liveLink} target="_blank" rel="noreferrer" className="icon-link">
+                          <ExternalLink size={20} />
+                        </a>
+                      )}
                     </div>
                   </div>
                 </div>
