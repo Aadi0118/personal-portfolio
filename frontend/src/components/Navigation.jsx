@@ -5,6 +5,7 @@ import './Navigation.css';
 
 const Navigation = () => {
   const [scrolled, setScrolled] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -25,11 +26,18 @@ const Navigation = () => {
         <a href="#" className="nav-logo outfit-font">
           Portfolio<span className="accent-text">.</span>
         </a>
-        <div className="nav-links">
-          <a href="#" className="nav-link">Home</a>
-          <a href="#projects" className="nav-link">Projects</a>
-          <a href="#about" className="nav-link">About</a>
-          <a href="#contact" className="nav-btn">Let's Talk</a>
+        
+        <div className={`hamburger ${isOpen ? 'active' : ''}`} onClick={() => setIsOpen(!isOpen)}>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+
+        <div className={`nav-links ${isOpen ? 'open' : ''}`}>
+          <a href="#" className="nav-link" onClick={() => setIsOpen(false)}>Home</a>
+          <a href="#projects" className="nav-link" onClick={() => setIsOpen(false)}>Projects</a>
+          <a href="#about" className="nav-link" onClick={() => setIsOpen(false)}>About</a>
+          <a href="#contact" className="nav-btn" onClick={() => setIsOpen(false)}>Let's Talk</a>
         </div>
       </div>
     </motion.nav>
