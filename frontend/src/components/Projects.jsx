@@ -18,7 +18,7 @@ const Projects = () => {
       title: 'Shree Family Restaurant Website',
       description: 'A comprehensive full-stack restaurant management and online ordering system. Features include a dynamic digital menu, real-time table reservations, secure user authentication, and a dedicated admin dashboard for managing orders seamlessly.',
       technologies: ['React', 'Node.js', 'MongoDB', 'Express', 'Tailwind CSS'],
-      githubLink: 'https://github.com/Aadi0118/restaurant-website',
+      githubLink: '#',
       liveLink: 'https://shree-restaurant-seven.vercel.app/',
       imageUrl: restaurantImage
     },
