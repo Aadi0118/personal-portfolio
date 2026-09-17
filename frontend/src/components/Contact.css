@@ -191,4 +191,10 @@
   .contact-content {
     flex-direction: column;
   }
+  .contact-section {
+    padding: 60px 1rem;
+  }
+  .contact-info, .contact-form-container {
+    padding: 1.5rem;
+  }
 }

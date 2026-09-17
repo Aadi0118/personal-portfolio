@@ -108,4 +108,12 @@
   .about-image-container {
     max-width: 100%;
   }
+
+  .about-section {
+    padding: 60px 1rem;
+  }
+
+  .about-text {
+    padding: 1.5rem;
+  }
 }
