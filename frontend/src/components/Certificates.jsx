@@ -1,5 +1,5 @@
-import React, { useRef } from 'react';
-import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
+import React from 'react';
+import { motion } from 'framer-motion';
 import { ExternalLink, CheckCircle } from 'lucide-react';
 import './Certificates.css';
 import honeywellImg from '../assets/honewell technologies hackathon.PNG';
@@ -17,95 +17,6 @@ import Node from '../assets/node.PNG';
 import Java from '../assets/j2ee.PNG';
 import OOAD from '../assets/ooad.PNG';
 import SPM from '../assets/spm.PNG';
-
-const TiltCard = ({ cert, index }) => {
-  const ref = useRef(null);
-
-  const x = useMotionValue(0);
-  const y = useMotionValue(0);
-
-  const mouseXSpring = useSpring(x);
-  const mouseYSpring = useSpring(y);
-
-  const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ["17.5deg", "-17.5deg"]);
-  const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ["-17.5deg", "17.5deg"]);
-
-  const handleMouseMove = (e) => {
-    if (!ref.current) return;
-
-    const rect = ref.current.getBoundingClientRect();
-
-    const width = rect.width;
-    const height = rect.height;
-
-    const mouseX = e.clientX - rect.left;
-    const mouseY = e.clientY - rect.top;
-
-    const xPct = mouseX / width - 0.5;
-    const yPct = mouseY / height - 0.5;
-
-    x.set(xPct);
-    y.set(yPct);
-
-    // Set CSS vars for the glowing hover effect
-    ref.current.style.setProperty('--mouse-x', `${mouseX}px`);
-    ref.current.style.setProperty('--mouse-y', `${mouseY}px`);
-  };
-
-  const handleMouseLeave = () => {
-    x.set(0);
-    y.set(0);
-    if (ref.current) {
-      ref.current.style.setProperty('--mouse-x', `-1000px`);
-      ref.current.style.setProperty('--mouse-y', `-1000px`);
-    }
-  };
-
-  return (
-    <motion.div
-      ref={ref}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      initial={{ opacity: 0, rotateX: 60, y: 100, scale: 0.8 }}
-      whileInView={{ opacity: 1, rotateX: 0, y: 0, scale: 1 }}
-      whileTap={{ scale: 0.98 }}
-      viewport={{ once: true, margin: "-50px" }}
-      transition={{ duration: 0.8, delay: index * 0.1, type: "spring", bounce: 0.4 }}
-      style={{
-        rotateX,
-        rotateY,
-        transformStyle: "preserve-3d",
-      }}
-      className="cert-card glass-panel magic-card"
-    >
-      <div className="cert-glow"></div>
-
-      <div style={{ transform: "translateZ(60px)", transformStyle: "preserve-3d" }} className="cert-content-wrapper">
-        <div className="cert-image-container">
-          <img src={cert.imageUrl} alt={cert.title} className="cert-image" style={{ transform: "translateZ(30px)" }} />
-          <div className="cert-issuer-badge" style={{ transform: "translateZ(50px)" }}>
-            <CheckCircle size={14} className="verified-icon" />
-            {cert.issuer}
-          </div>
-        </div>
-
-        <div className="cert-info">
-          <h3 className="cert-title outfit-font" style={{ transform: "translateZ(40px)" }}>{cert.title}</h3>
-
-          <div className="cert-footer" style={{ transform: "translateZ(30px)" }}>
-            <span className="cert-date">{cert.date}</span>
-            {cert.verifyLink && cert.verifyLink !== '#' && (
-              <a href={cert.verifyLink} target="_blank" rel="noreferrer" className="cert-verify-btn" style={{ transform: "translateZ(20px)" }}>
-                Verify <ExternalLink size={16} />
-              </a>
-            )}
-          </div>
-        </div>
-      </div>
-    </motion.div>
-  );
-};
-
 
 const Certificates = () => {
   const certificates = [
@@ -247,7 +158,41 @@ const Certificates = () => {
 
         <div className="certificates-grid">
           {certificates.map((cert, index) => (
-            <TiltCard key={cert.id} cert={cert} index={index} />
+            <motion.div
+              key={cert.id}
+              className="cert-card glass-panel"
+              initial={{ opacity: 0, y: 40, scale: 0.95 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.7, delay: index * 0.1, type: "spring", bounce: 0.3 }}
+              whileHover={{
+                y: -10,
+                scale: 1.02,
+                boxShadow: "0 20px 40px rgba(99, 102, 241, 0.2)"
+              }}
+              whileTap={{ scale: 0.98 }}
+            >
+              <div className="cert-image-container">
+                <img src={cert.imageUrl} alt={cert.title} className="cert-image" />
+                <div className="cert-issuer-badge">
+                  <CheckCircle size={14} className="verified-icon" />
+                  {cert.issuer}
+                </div>
+              </div>
+
+              <div className="cert-info">
+                <h3 className="cert-title outfit-font">{cert.title}</h3>
+
+                <div className="cert-footer">
+                  <span className="cert-date">{cert.date}</span>
+                  {cert.verifyLink && cert.verifyLink !== '#' && (
+                    <a href={cert.verifyLink} target="_blank" rel="noreferrer" className="cert-verify-btn">
+                      Verify <ExternalLink size={16} />
+                    </a>
+                  )}
+                </div>
+              </div>
+            </motion.div>
           ))}
         </div>
       </div>
