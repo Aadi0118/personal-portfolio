@@ -194,8 +194,6 @@
 @media (max-width: 900px) {
   .about-content {
     flex-direction: column;
-    min-width: 0;
-    width: 100%;
   }
   
   .about-image-container {
@@ -204,42 +202,9 @@
 
   .about-section {
     padding: 60px 1rem;
-    overflow-x: hidden;
   }
 
   .about-text {
     padding: 1.5rem;
-    min-width: 0;
-    width: 100%;
-  }
-
-  .skills-grid {
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    overflow-y: hidden;
-    scroll-snap-type: x mandatory;
-    padding-bottom: 1rem;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: thin;
-    scrollbar-color: rgba(99, 102, 241, 0.5) transparent;
-    width: 100%;
-  }
-
-  .skills-grid::-webkit-scrollbar {
-    height: 4px;
-  }
-  
-  .skills-grid::-webkit-scrollbar-track {
-    background: transparent;
-  }
-  
-  .skills-grid::-webkit-scrollbar-thumb {
-    background: rgba(99, 102, 241, 0.5);
-    border-radius: 4px;
-  }
-
-  .skill-item {
-    scroll-snap-align: start;
-    flex: 0 0 auto;
   }
 }
