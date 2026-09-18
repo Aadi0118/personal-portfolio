@@ -1,5 +1,5 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useRef } from 'react';
+import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import profilePic from '../assets/profile pic.jpg';
 import './About.css';
 
@@ -23,6 +23,76 @@ const skills = [
   { name: 'Render', icon: 'https://cdn.simpleicons.org/render/white' },
   { name: 'Postman', icon: 'https://cdn.simpleicons.org/postman/FF6C37' }
 ];
+
+const TiltSkill = ({ skill, index }) => {
+  const ref = useRef(null);
+
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+
+  const mouseXSpring = useSpring(x);
+  const mouseYSpring = useSpring(y);
+
+  const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ["20deg", "-20deg"]);
+  const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ["-20deg", "20deg"]);
+
+  const handleMouseMove = (e) => {
+    if (!ref.current) return;
+    
+    const rect = ref.current.getBoundingClientRect();
+    const width = rect.width;
+    const height = rect.height;
+    
+    const mouseX = e.clientX - rect.left;
+    const mouseY = e.clientY - rect.top;
+    
+    const xPct = mouseX / width - 0.5;
+    const yPct = mouseY / height - 0.5;
+    
+    x.set(xPct);
+    y.set(yPct);
+
+    // Set CSS vars for the glowing hover effect
+    ref.current.style.setProperty('--mouse-x', `${mouseX}px`);
+    ref.current.style.setProperty('--mouse-y', `${mouseY}px`);
+  };
+
+  const handleMouseLeave = () => {
+    x.set(0);
+    y.set(0);
+    if (ref.current) {
+      ref.current.style.setProperty('--mouse-x', `-1000px`);
+      ref.current.style.setProperty('--mouse-y', `-1000px`);
+    }
+  };
+
+  return (
+    <motion.div
+      ref={ref}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      initial={{ opacity: 0, rotateX: 90, y: 50, scale: 0.5 }}
+      whileInView={{ opacity: 1, rotateX: 0, y: 0, scale: 1 }}
+      viewport={{ once: true, margin: "-10px" }}
+      transition={{ duration: 0.6, delay: index * 0.05, type: "spring", bounce: 0.5 }}
+      style={{
+        rotateX,
+        rotateY,
+        transformStyle: "preserve-3d",
+      }}
+      className="skill-item magic-skill-card"
+      title={skill.name}
+    >
+      <div className="skill-glow"></div>
+      
+      <div style={{ transform: "translateZ(20px)", transformStyle: "preserve-3d" }} className="skill-content-wrapper">
+        <img src={skill.icon} alt={skill.name} className="skill-icon" style={{ transform: "translateZ(30px)" }} />
+        <span className="skill-name" style={{ transform: "translateZ(15px)" }}>{skill.name}</span>
+      </div>
+    </motion.div>
+  );
+};
+
 
 const About = () => {
   return (
@@ -75,10 +145,7 @@ const About = () => {
             
             <div className="skills-grid">
               {skills.map((skill, index) => (
-                <div key={index} className="skill-item" title={skill.name}>
-                  <img src={skill.icon} alt={skill.name} className="skill-icon" />
-                  <span className="skill-name">{skill.name}</span>
-                </div>
+                <TiltSkill key={index} skill={skill} index={index} />
               ))}
             </div>
           </motion.div>

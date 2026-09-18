@@ -9,16 +9,90 @@
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
   gap: 2.5rem;
   margin-top: 3rem;
+  perspective: 1200px;
+}
+
+.magic-card {
+  --mouse-x: -1000px;
+  --mouse-y: -1000px;
+  background: rgba(15, 17, 21, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.magic-card:hover {
+  border-color: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5), 
+              0 0 30px rgba(99, 102, 241, 0.15);
+}
+
+.cert-glow {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  opacity: 0;
+  transition: opacity 0.3s;
+  pointer-events: none;
+  background: radial-gradient(
+    500px circle at var(--mouse-x) var(--mouse-y),
+    rgba(99, 102, 241, 0.15),
+    transparent 50%
+  );
+  z-index: 1;
+}
+
+.magic-card:hover .cert-glow {
+  opacity: 1;
+}
+
+/* Pseudo element for the glowing border */
+.magic-card::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: radial-gradient(
+    400px circle at var(--mouse-x) var(--mouse-y),
+    rgba(99, 102, 241, 0.8),
+    transparent 40%
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.3s;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.magic-card:hover::before {
+  opacity: 1;
 }
 
 .cert-card {
   border-radius: 16px;
   display: flex;
   flex-direction: column;
-  transition: all 0.3s ease;
   position: relative;
-  overflow: hidden;
   padding: 0;
+}
+
+.cert-content-wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  border-radius: 16px;
+  overflow: hidden;
+  background: rgba(10, 11, 15, 0.95);
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.02);
+  z-index: 3;
+  pointer-events: none; 
+}
+
+/* Enable pointer events on the inner elements that need it */
+.cert-content-wrapper > * {
+  pointer-events: auto;
 }
 
 .cert-image-container {
@@ -32,11 +106,12 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.5s ease;
+  transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
 .cert-card:hover .cert-image {
-  transform: scale(1.1);
+  /* Using !important to override the inline translateZ temporarily if needed, though translateZ is preserved */
+  transform: translateZ(30px) scale(1.1) !important;
 }
 
 .cert-issuer-badge {
@@ -54,10 +129,16 @@
   align-items: center;
   gap: 6px;
   border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+  transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.cert-card:hover .cert-issuer-badge {
+  transform: translateZ(60px) scale(1.05) !important;
 }
 
 .verified-icon {
-  color: #10b981; /* Success green */
+  color: #10b981; 
 }
 
 .cert-info {
@@ -73,6 +154,13 @@
   margin-bottom: 1.5rem;
   line-height: 1.4;
   flex: 1;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.4);
+  transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.cert-card:hover .cert-title {
+  transform: translateZ(50px) !important;
+  color: white;
 }
 
 .cert-footer {
@@ -81,6 +169,11 @@
   align-items: center;
   border-top: 1px solid rgba(255, 255, 255, 0.05);
   padding-top: 1.2rem;
+  transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.cert-card:hover .cert-footer {
+  transform: translateZ(35px) !important;
 }
 
 .cert-date {
@@ -107,6 +200,7 @@
   background: var(--accent);
   color: white;
   box-shadow: 0 4px 15px var(--accent-glow);
+  transform: translateZ(30px) translateY(-2px) !important;
 }
 
 @media (max-width: 768px) {
