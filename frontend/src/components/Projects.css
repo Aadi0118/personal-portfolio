@@ -54,7 +54,7 @@
 .project-image-placeholder {
   width: 100%;
   height: 100%;
-  background: linear-gradient(45deg, #1a1d24, #2a2d36);
+  background: linear-gradient(45deg, var(--bg-secondary), var(--bg-primary));
 }
 
 .project-overlay {
@@ -63,10 +63,11 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(15, 17, 21, 0.8);
+  background: rgba(15, 17, 21, 0.7);
+  backdrop-filter: blur(4px);
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   opacity: 0;
   transition: opacity 0.3s ease;
 }
@@ -76,12 +77,12 @@
 }
 
 .project-card:hover .project-image {
-  transform: scale(1.05);
+  transform: scale(1.1);
 }
 
 .project-links {
   display: flex;
-  gap: 1.5rem;
+  gap: 1rem;
   transform: translateY(20px);
   transition: transform 0.3s ease;
 }
@@ -92,57 +93,64 @@
 
 .icon-link {
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   width: 45px;
   height: 45px;
-  border-radius: 50%;
-  background: var(--accent);
+  background-color: var(--accent);
   color: white;
+  border-radius: 50%;
   transition: all 0.3s ease;
 }
 
 .icon-link:hover {
-  background: white;
-  color: var(--accent);
   transform: scale(1.1);
+  background-color: white;
+  color: var(--accent);
+  box-shadow: 0 0 15px var(--accent-glow);
 }
 
 .project-info {
-  padding: 2rem;
+  padding: 1.8rem;
   flex: 1;
   display: flex;
   flex-direction: column;
 }
 
 .project-title {
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   color: var(--text-primary);
-  margin-bottom: 1rem;
+  margin-bottom: 0.8rem;
 }
 
 .project-description {
+  font-size: 0.95rem;
   color: var(--text-secondary);
   line-height: 1.6;
   margin-bottom: 1.5rem;
-  font-size: 0.95rem;
   flex: 1;
 }
 
 .project-tech {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
+  gap: 0.6rem;
 }
 
 .tech-badge {
-  background: rgba(99, 102, 241, 0.1);
-  color: var(--accent);
-  padding: 0.3rem 0.8rem;
-  border-radius: 20px;
   font-size: 0.8rem;
-  font-weight: 600;
+  padding: 0.3rem 0.8rem;
+  background-color: rgba(99, 102, 241, 0.1);
+  color: var(--accent);
+  border-radius: 20px;
   border: 1px solid rgba(99, 102, 241, 0.2);
+  transition: all 0.3s ease;
+}
+
+.tech-badge:hover {
+  background-color: var(--accent);
+  color: white;
+  box-shadow: 0 0 10px var(--accent-glow);
 }
 
 .loading-state {

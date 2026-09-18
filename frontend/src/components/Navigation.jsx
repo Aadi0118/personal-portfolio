@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import './Navigation.css';
 
 const Navigation = () => {
   const [scrolled, setScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  const [activeTab, setActiveTab] = useState('Home');
 
   useEffect(() => {
     const handleScroll = () => {
@@ -15,6 +15,12 @@ const Navigation = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const navItems = [
+    { name: 'Home', href: '#' },
+    { name: 'Projects', href: '#projects' },
+    { name: 'About', href: '#about' }
+  ];
+
   return (
     <motion.nav 
       className={`navbar ${scrolled ? 'scrolled glass-panel' : ''}`}
@@ -23,7 +29,7 @@ const Navigation = () => {
       transition={{ duration: 0.8, ease: "easeOut" }}
     >
       <div className="nav-container">
-        <a href="#" className="nav-logo outfit-font">
+        <a href="#" className="nav-logo outfit-font" onClick={() => setActiveTab('Home')}>
           Portfolio<span className="accent-text">.</span>
         </a>
         
@@ -34,9 +40,26 @@ const Navigation = () => {
         </div>
 
         <div className={`nav-links ${isOpen ? 'open' : ''}`}>
-          <a href="#" className="nav-link" onClick={() => setIsOpen(false)}>Home</a>
-          <a href="#projects" className="nav-link" onClick={() => setIsOpen(false)}>Projects</a>
-          <a href="#about" className="nav-link" onClick={() => setIsOpen(false)}>About</a>
+          {navItems.map((item) => (
+            <a 
+              key={item.name}
+              href={item.href} 
+              className="nav-link" 
+              onClick={() => {
+                setIsOpen(false);
+                setActiveTab(item.name);
+              }}
+            >
+              {item.name}
+              {activeTab === item.name && (
+                <motion.div
+                  layoutId="active-nav-underline"
+                  className="active-underline"
+                  transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                />
+              )}
+            </a>
+          ))}
           <a href="#contact" className="nav-btn" onClick={() => setIsOpen(false)}>Let's Talk</a>
         </div>
       </div>

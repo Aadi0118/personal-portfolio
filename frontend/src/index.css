@@ -15,6 +15,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  cursor: none; /* Hide default cursor */
 }
 
 html, body {
@@ -24,6 +25,48 @@ html, body {
   overflow-x: hidden;
   min-height: 100vh;
   scroll-behavior: smooth;
+  position: relative;
+}
+
+/* Subtle background mesh/glow */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: 
+    radial-gradient(circle at 15% 50%, rgba(99, 102, 241, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 85% 30%, rgba(168, 85, 247, 0.08) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Custom Cursor Styles */
+.cursor-outline {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--accent);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  background-color: transparent;
+}
+
+.cursor-dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 8px;
+  height: 8px;
+  background-color: var(--accent);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
 }
 
 h1, h2, h3, h4, h5, h6, .outfit-font {
@@ -33,6 +76,10 @@ h1, h2, h3, h4, h5, h6, .outfit-font {
 a {
   text-decoration: none;
   color: inherit;
+}
+
+.accent-text {
+  color: var(--accent);
 }
 
 .glass-panel {

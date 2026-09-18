@@ -1,9 +1,61 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { useFrame } from '@react-three/fiber';
-import { Float, MeshDistortMaterial, TorusKnot, Stars, OrbitControls } from '@react-three/drei';
+import { Float, Sphere, useTexture, OrbitControls } from '@react-three/drei';
+import * as THREE from 'three';
+
+const Earth = ({ active, hovered, isMobile }) => {
+  const meshRef = useRef();
+  const cloudsRef = useRef();
+  
+  // Load textures
+  const [colorMap, normalMap, specularMap, cloudsMap] = useTexture([
+    'https://raw.githubusercontent.com/mrdoob/three.js/master/examples/textures/planets/earth_atmos_2048.jpg',
+    'https://raw.githubusercontent.com/mrdoob/three.js/master/examples/textures/planets/earth_normal_2048.jpg',
+    'https://raw.githubusercontent.com/mrdoob/three.js/master/examples/textures/planets/earth_specular_2048.jpg',
+    'https://raw.githubusercontent.com/mrdoob/three.js/master/examples/textures/planets/earth_clouds_1024.png'
+  ]);
+
+  useFrame((state) => {
+    if (meshRef.current) {
+      meshRef.current.rotation.y = state.clock.getElapsedTime() * 0.15;
+    }
+    if (cloudsRef.current) {
+      cloudsRef.current.rotation.y = state.clock.getElapsedTime() * 0.18;
+    }
+  });
+
+  // Significantly reduced scale to keep it in frame
+  const scale = active ? (isMobile ? 1.0 : 1.4) : 
+                hovered ? (isMobile ? 0.95 : 1.3) : 
+                (isMobile ? 0.9 : 1.2);
+
+  // Center axis rotation only (no tilt)
+  return (
+    <group scale={scale}>
+      <Sphere ref={meshRef} args={[1, 64, 64]}>
+        <meshPhongMaterial 
+          map={colorMap}
+          normalMap={normalMap}
+          specularMap={specularMap}
+          specular={new THREE.Color('grey')}
+          shininess={50}
+        />
+      </Sphere>
+      <Sphere ref={cloudsRef} args={[1.015, 64, 64]}>
+        <meshPhongMaterial 
+          map={cloudsMap}
+          transparent={true}
+          opacity={0.8}
+          blending={THREE.AdditiveBlending}
+          depthWrite={false}
+          side={THREE.DoubleSide}
+        />
+      </Sphere>
+    </group>
+  );
+};
 
 const HeroScene = () => {
-  const meshRef = useRef();
   const [hovered, setHover] = useState(false);
   const [active, setActive] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
@@ -17,49 +69,32 @@ const HeroScene = () => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  useFrame(({ clock }) => {
-    if (meshRef.current) {
-      meshRef.current.rotation.x = clock.getElapsedTime() * 0.3;
-      meshRef.current.rotation.y = clock.getElapsedTime() * 0.4;
-    }
-  });
-
   return (
     <>
-      <ambientLight intensity={0.8} />
-      <directionalLight position={[10, 10, 5]} intensity={1.5} color="#ffffff" />
+      <ambientLight intensity={0.6} />
+      <directionalLight position={[10, 10, 5]} intensity={2.5} color="#ffffff" />
       <directionalLight position={[-10, -10, -5]} intensity={1.5} color="#6366f1" />
       <directionalLight position={[0, 10, -10]} intensity={1} color="#a855f7" />
       
-      <Stars radius={100} depth={50} count={3000} factor={4} saturation={1} fade speed={1} />
-      
-      <OrbitControls enableZoom={false} autoRotate autoRotateSpeed={1} maxPolarAngle={Math.PI / 1.5} minPolarAngle={Math.PI / 4} />
+      {/* Lock polar angles so mouse drag only moves along the horizontal axis */}
+      <OrbitControls 
+        enableZoom={false} 
+        enablePan={false}
+        autoRotate={false}
+        minPolarAngle={Math.PI / 2} 
+        maxPolarAngle={Math.PI / 2} 
+      />
 
-      <Float speed={2.5} rotationIntensity={1.5} floatIntensity={2}>
-        <TorusKnot 
-          ref={meshRef} 
-          args={[0.65, 0.2, 128, 32]} 
-          position={[0, 0, 0]}
-          scale={
-            active ? (isMobile ? 0.9 : 1.3) : 
-            hovered ? (isMobile ? 0.8 : 1.15) : 
-            (isMobile ? 0.6 : 1)
-          }
+      <Float speed={1.5} rotationIntensity={0} floatIntensity={1}>
+        <group 
           onPointerOver={() => setHover(true)}
           onPointerOut={() => setHover(false)}
           onClick={() => setActive(!active)}
         >
-          <MeshDistortMaterial 
-            color={hovered ? "#a855f7" : "#6366f1"} 
-            attach="material" 
-            distort={active ? 0.4 : hovered ? 0.3 : 0.2} 
-            speed={active ? 4 : hovered ? 3 : 2} 
-            roughness={0.1}
-            metalness={0.9}
-            clearcoat={1}
-            clearcoatRoughness={0.1}
-          />
-        </TorusKnot>
+          <React.Suspense fallback={<Sphere args={[1, 16, 16]} scale={isMobile ? 1.1 : 1.8}><meshBasicMaterial color="#6366f1" wireframe /></Sphere>}>
+            <Earth active={active} hovered={hovered} isMobile={isMobile} />
+          </React.Suspense>
+        </group>
       </Float>
     </>
   );

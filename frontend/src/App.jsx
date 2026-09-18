@@ -2,12 +2,14 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navigation from './components/Navigation';
 import Home from './pages/Home';
+import CustomCursor from './components/CustomCursor';
 import './index.css';
 
 function App() {
   return (
     <Router>
       <div className="app-container">
+        <CustomCursor />
         <Navigation />
         <main className="main-content">
           <Routes>
