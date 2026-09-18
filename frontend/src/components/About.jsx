@@ -73,6 +73,7 @@ const TiltSkill = ({ skill, index }) => {
       onMouseLeave={handleMouseLeave}
       initial={{ opacity: 0, rotateX: 90, y: 50, scale: 0.5 }}
       whileInView={{ opacity: 1, rotateX: 0, y: 0, scale: 1 }}
+      whileTap={{ scale: 0.92 }}
       viewport={{ once: true, margin: "-10px" }}
       transition={{ duration: 0.6, delay: index * 0.05, type: "spring", bounce: 0.5 }}
       style={{

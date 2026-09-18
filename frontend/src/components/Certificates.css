@@ -20,12 +20,6 @@
   transition: border-color 0.3s, box-shadow 0.3s;
 }
 
-.magic-card:hover {
-  border-color: rgba(255, 255, 255, 0.1);
-  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5), 
-              0 0 30px rgba(99, 102, 241, 0.15);
-}
-
 .cert-glow {
   position: absolute;
   inset: 0;
@@ -39,10 +33,6 @@
     transparent 50%
   );
   z-index: 1;
-}
-
-.magic-card:hover .cert-glow {
-  opacity: 1;
 }
 
 /* Pseudo element for the glowing border */
@@ -64,10 +54,6 @@
   transition: opacity 0.3s;
   pointer-events: none;
   z-index: 2;
-}
-
-.magic-card:hover::before {
-  opacity: 1;
 }
 
 .cert-card {
@@ -109,11 +95,6 @@
   transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
-.cert-card:hover .cert-image {
-  /* Using !important to override the inline translateZ temporarily if needed, though translateZ is preserved */
-  transform: translateZ(30px) scale(1.1) !important;
-}
-
 .cert-issuer-badge {
   position: absolute;
   bottom: 15px;
@@ -131,10 +112,6 @@
   border: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow: 0 10px 20px rgba(0,0,0,0.3);
   transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
-}
-
-.cert-card:hover .cert-issuer-badge {
-  transform: translateZ(60px) scale(1.05) !important;
 }
 
 .verified-icon {
@@ -158,11 +135,6 @@
   transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
-.cert-card:hover .cert-title {
-  transform: translateZ(50px) !important;
-  color: white;
-}
-
 .cert-footer {
   display: flex;
   justify-content: space-between;
@@ -170,10 +142,6 @@
   border-top: 1px solid rgba(255, 255, 255, 0.05);
   padding-top: 1.2rem;
   transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
-}
-
-.cert-card:hover .cert-footer {
-  transform: translateZ(35px) !important;
 }
 
 .cert-date {
@@ -196,11 +164,44 @@
   border: 1px solid rgba(99, 102, 241, 0.2);
 }
 
-.cert-verify-btn:hover {
-  background: var(--accent);
-  color: white;
-  box-shadow: 0 4px 15px var(--accent-glow);
-  transform: translateZ(30px) translateY(-2px) !important;
+@media (hover: hover) and (pointer: fine) {
+  .magic-card:hover {
+    border-color: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5), 
+                0 0 30px rgba(99, 102, 241, 0.15);
+  }
+
+  .magic-card:hover .cert-glow {
+    opacity: 1;
+  }
+
+  .magic-card:hover::before {
+    opacity: 1;
+  }
+
+  .cert-card:hover .cert-image {
+    transform: translateZ(30px) scale(1.1) !important;
+  }
+
+  .cert-card:hover .cert-issuer-badge {
+    transform: translateZ(60px) scale(1.05) !important;
+  }
+
+  .cert-card:hover .cert-title {
+    transform: translateZ(50px) !important;
+    color: white;
+  }
+
+  .cert-card:hover .cert-footer {
+    transform: translateZ(35px) !important;
+  }
+
+  .cert-verify-btn:hover {
+    background: var(--accent);
+    color: white;
+    box-shadow: 0 4px 15px var(--accent-glow);
+    transform: translateZ(30px) translateY(-2px) !important;
+  }
 }
 
 @media (max-width: 768px) {

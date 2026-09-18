@@ -32,18 +32,18 @@ const TiltCard = ({ cert, index }) => {
 
   const handleMouseMove = (e) => {
     if (!ref.current) return;
-    
+
     const rect = ref.current.getBoundingClientRect();
-    
+
     const width = rect.width;
     const height = rect.height;
-    
+
     const mouseX = e.clientX - rect.left;
     const mouseY = e.clientY - rect.top;
-    
+
     const xPct = mouseX / width - 0.5;
     const yPct = mouseY / height - 0.5;
-    
+
     x.set(xPct);
     y.set(yPct);
 
@@ -68,6 +68,7 @@ const TiltCard = ({ cert, index }) => {
       onMouseLeave={handleMouseLeave}
       initial={{ opacity: 0, rotateX: 60, y: 100, scale: 0.8 }}
       whileInView={{ opacity: 1, rotateX: 0, y: 0, scale: 1 }}
+      whileTap={{ scale: 0.98 }}
       viewport={{ once: true, margin: "-50px" }}
       transition={{ duration: 0.8, delay: index * 0.1, type: "spring", bounce: 0.4 }}
       style={{
@@ -78,7 +79,7 @@ const TiltCard = ({ cert, index }) => {
       className="cert-card glass-panel magic-card"
     >
       <div className="cert-glow"></div>
-      
+
       <div style={{ transform: "translateZ(60px)", transformStyle: "preserve-3d" }} className="cert-content-wrapper">
         <div className="cert-image-container">
           <img src={cert.imageUrl} alt={cert.title} className="cert-image" style={{ transform: "translateZ(30px)" }} />
@@ -90,7 +91,7 @@ const TiltCard = ({ cert, index }) => {
 
         <div className="cert-info">
           <h3 className="cert-title outfit-font" style={{ transform: "translateZ(40px)" }}>{cert.title}</h3>
-          
+
           <div className="cert-footer" style={{ transform: "translateZ(30px)" }}>
             <span className="cert-date">{cert.date}</span>
             {cert.verifyLink && cert.verifyLink !== '#' && (
