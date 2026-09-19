@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { ChevronDown } from 'lucide-react';
 import { Canvas } from '@react-three/fiber';
 import { Stars } from '@react-three/drei';
 import HeroScene from '../components/3d/HeroScene';
@@ -72,6 +73,21 @@ const Home = () => {
             <HeroScene />
           </Canvas>
         </div>
+        
+        <motion.div 
+          className="scroll-indicator"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.5, duration: 1 }}
+        >
+          <motion.a 
+            href="#about"
+            animate={{ y: [0, 10, 0] }}
+            transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
+          >
+            <ChevronDown size={32} />
+          </motion.a>
+        </motion.div>
       </section>
 
       <About />

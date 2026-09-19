@@ -152,6 +152,26 @@
   transform: translateY(-3px);
 }
 
+.scroll-indicator {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+}
+
+.scroll-indicator a {
+  color: var(--text-secondary);
+  transition: color 0.3s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.scroll-indicator a:hover {
+  color: var(--accent);
+}
+
 .hero-3d-container {
   flex: 1;
   height: 600px;
