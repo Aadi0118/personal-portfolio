@@ -115,6 +115,9 @@ const Contact = () => {
                 <a href="https://github.com/Aadi0118" target="_blank" rel="noreferrer" className="social-link">
                   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original.svg" alt="GitHub" style={{ width: '22px', height: '22px', filter: 'invert(1)' }} />
                 </a>
+                <a href="https://www.instagram.com/unexpected_aadi" target="_blank" rel="noreferrer" className="social-link">
+                  <img src="https://cdn.simpleicons.org/instagram/white" alt="Instagram" style={{ width: '22px', height: '22px' }} />
+                </a>
               </div>
             </div>
           </motion.div>
