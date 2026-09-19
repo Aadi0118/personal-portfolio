@@ -45,7 +45,7 @@ const Home = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5, duration: 0.5 }}
             >
-              <span className="accent-text">Aditya Kumar</span> Sinha
+              <span className="gradient-text">Aditya Kumar Sinha</span>
             </motion.h1>
             <motion.p 
               className="bio"

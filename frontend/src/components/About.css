@@ -99,11 +99,9 @@
   opacity: 0;
   transition: opacity 0.3s;
   pointer-events: none;
-  background: radial-gradient(
-    150px circle at var(--mouse-x) var(--mouse-y),
-    rgba(99, 102, 241, 0.2),
-    transparent 50%
-  );
+  background: radial-gradient(150px circle at var(--mouse-x) var(--mouse-y),
+      rgba(99, 102, 241, 0.2),
+      transparent 50%);
   z-index: 1;
 }
 
@@ -114,11 +112,9 @@
   inset: -1px;
   border-radius: inherit;
   padding: 1px;
-  background: radial-gradient(
-    100px circle at var(--mouse-x) var(--mouse-y),
-    rgba(99, 102, 241, 0.8),
-    transparent 40%
-  );
+  background: radial-gradient(100px circle at var(--mouse-x) var(--mouse-y),
+      rgba(99, 102, 241, 0.8),
+      transparent 40%);
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
@@ -139,13 +135,13 @@
   gap: 0.5rem;
   border-radius: 12px;
   background: rgba(10, 11, 15, 0.95);
-  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.02);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.02);
   z-index: 3;
-  pointer-events: none; 
+  pointer-events: none;
 }
 
 /* Enable pointer events on the inner elements */
-.skill-content-wrapper > * {
+.skill-content-wrapper>* {
   pointer-events: auto;
 }
 
@@ -154,7 +150,7 @@
   height: 40px;
   object-fit: contain;
   transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), filter 0.3s ease;
-  filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.3));
 }
 
 .skill-name {
@@ -168,8 +164,8 @@
 @media (hover: hover) and (pointer: fine) {
   .magic-skill-card:hover {
     border-color: rgba(255, 255, 255, 0.15);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4), 
-                0 0 15px rgba(99, 102, 241, 0.2);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4),
+      0 0 15px rgba(99, 102, 241, 0.2);
   }
 
   .magic-skill-card:hover .skill-glow {
@@ -182,7 +178,7 @@
 
   .magic-skill-card:hover .skill-icon {
     transform: translateZ(40px) scale(1.15) !important;
-    filter: drop-shadow(0 10px 15px rgba(0,0,0,0.6));
+    filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.6));
   }
 
   .magic-skill-card:hover .skill-name {
@@ -195,7 +191,7 @@
   .about-content {
     flex-direction: column;
   }
-  
+
   .about-image-container {
     max-width: 100%;
   }

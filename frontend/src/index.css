@@ -1,14 +1,30 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Outfit:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@300;400;500;600;700;800&display=swap');
 
 :root {
-  --bg-primary: #0f1115;
-  --bg-secondary: #1a1d24;
-  --text-primary: #f8f9fa;
-  --text-secondary: #adb5bd;
-  --accent: #6366f1;
-  --accent-glow: rgba(99, 102, 241, 0.3);
-  --glass-bg: rgba(26, 29, 36, 0.6);
-  --glass-border: rgba(255, 255, 255, 0.08);
+  /* Deep Obsidian Backgrounds */
+  --bg-primary: #050507;
+  --bg-secondary: #0a0b10;
+  
+  /* Text */
+  --text-primary: #ffffff;
+  --text-secondary: #a0aec0;
+  --text-muted: #718096;
+  
+  /* Accents - Indigo & Purple */
+  --accent: #818cf8;
+  --accent-secondary: #c084fc;
+  
+  /* Glows */
+  --accent-glow: rgba(129, 140, 248, 0.35);
+  --accent-glow-strong: rgba(129, 140, 248, 0.6);
+  --secondary-glow: rgba(192, 132, 252, 0.35);
+  
+  /* Premium Glassmorphism */
+  --glass-bg: rgba(10, 11, 16, 0.4);
+  --glass-bg-hover: rgba(20, 22, 30, 0.5);
+  --glass-border: rgba(255, 255, 255, 0.05);
+  --glass-border-light: rgba(255, 255, 255, 0.1);
+  --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
 }
 
 * {
@@ -26,6 +42,8 @@ html, body {
   min-height: 100vh;
   scroll-behavior: smooth;
   position: relative;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 /* Subtle background mesh/glow */
@@ -37,8 +55,9 @@ body::before {
   width: 100vw;
   height: 100vh;
   background: 
-    radial-gradient(circle at 15% 50%, rgba(99, 102, 241, 0.08) 0%, transparent 50%),
-    radial-gradient(circle at 85% 30%, rgba(168, 85, 247, 0.08) 0%, transparent 50%);
+    radial-gradient(circle at 15% 50%, rgba(129, 140, 248, 0.12) 0%, transparent 50%),
+    radial-gradient(circle at 85% 30%, rgba(192, 132, 252, 0.12) 0%, transparent 50%),
+    radial-gradient(circle at 50% 100%, rgba(56, 189, 248, 0.08) 0%, transparent 50%);
   pointer-events: none;
   z-index: -1;
 }
@@ -48,13 +67,15 @@ body::before {
   position: fixed;
   top: 0;
   left: 0;
-  width: 32px;
-  height: 32px;
+  width: 40px;
+  height: 40px;
   border: 1px solid var(--accent);
   border-radius: 50%;
   pointer-events: none;
   z-index: 9999;
   background-color: transparent;
+  transition: width 0.2s, height 0.2s, background-color 0.2s;
+  mix-blend-mode: difference;
 }
 
 .cursor-dot {
@@ -63,14 +84,17 @@ body::before {
   left: 0;
   width: 8px;
   height: 8px;
-  background-color: var(--accent);
+  background-color: var(--text-primary);
   border-radius: 50%;
   pointer-events: none;
   z-index: 9999;
+  mix-blend-mode: difference;
 }
 
+/* Typography Enhancements */
 h1, h2, h3, h4, h5, h6, .outfit-font {
   font-family: 'Outfit', sans-serif;
+  letter-spacing: -0.02em;
 }
 
 a {
@@ -78,16 +102,33 @@ a {
   color: inherit;
 }
 
+/* Utility Classes */
 .accent-text {
   color: var(--accent);
 }
 
+.gradient-text {
+  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+  display: inline-block;
+}
+
 .glass-panel {
   background: var(--glass-bg);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   border: 1px solid var(--glass-border);
-  border-radius: 16px;
+  border-radius: 20px;
+  box-shadow: var(--glass-shadow);
+  transition: all 0.3s ease;
+}
+
+.glass-panel:hover {
+  border-color: var(--glass-border-light);
+  background: var(--glass-bg-hover);
 }
 
 /* Custom Scrollbar */
@@ -98,7 +139,7 @@ a {
   background: var(--bg-primary);
 }
 ::-webkit-scrollbar-thumb {
-  background: #333;
+  background: #1f2937;
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
@@ -114,16 +155,15 @@ a {
 
 .main-content {
   flex: 1;
-  padding-top: 80px; /* offset for fixed nav */
 }
 
 /* Footer */
 .footer {
   text-align: center;
-  padding: 2rem;
+  padding: 3rem 2rem;
   color: var(--text-secondary);
   font-size: 0.9rem;
   border-top: 1px solid var(--glass-border);
-  background-color: var(--bg-secondary);
+  background: linear-gradient(to top, var(--bg-secondary) 0%, transparent 100%);
   margin-top: auto;
 }

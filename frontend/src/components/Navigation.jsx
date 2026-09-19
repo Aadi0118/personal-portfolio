@@ -54,8 +54,8 @@ const Navigation = () => {
               {item.name}
               {activeTab === item.name && (
                 <motion.div
-                  layoutId="active-nav-underline"
-                  className="active-underline"
+                  layoutId="active-nav-pill"
+                  className="active-pill"
                   transition={{ type: "spring", stiffness: 380, damping: 30 }}
                 />
               )}

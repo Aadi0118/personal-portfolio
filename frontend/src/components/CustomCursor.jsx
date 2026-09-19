@@ -36,16 +36,16 @@ const CustomCursor = () => {
 
   const variants = {
     default: {
-      x: mousePosition.x - 16,
-      y: mousePosition.y - 16,
+      x: mousePosition.x - 20,
+      y: mousePosition.y - 20,
       scale: 1,
     },
     hover: {
-      x: mousePosition.x - 16,
-      y: mousePosition.y - 16,
-      scale: 1.5,
-      backgroundColor: 'rgba(99, 102, 241, 0.1)',
-      border: '1px solid rgba(99, 102, 241, 0.8)',
+      x: mousePosition.x - 20,
+      y: mousePosition.y - 20,
+      scale: 1.8,
+      backgroundColor: 'var(--glass-border-light)',
+      border: '1px solid var(--accent)',
     }
   };
 
