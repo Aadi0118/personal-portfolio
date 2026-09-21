@@ -68,8 +68,15 @@ const Projects = () => {
         const res = await fetch(`${apiUrl}/api/projects`);
         if (res.ok) {
           const data = await res.json();
-          // If no projects in DB, use fallback
-          setProjects(data.length > 0 ? data : fallbackProjects);
+          
+          let finalProjects = data.length > 0 ? data : fallbackProjects;
+          
+          // Ensure Ludo Royale is in the list even if backend doesn't have it yet
+          if (data.length > 0 && !data.some(p => p.title === 'Ludo Royale')) {
+             finalProjects = [fallbackProjects[0], ...data];
+          }
+          
+          setProjects(finalProjects);
         } else {
           setProjects(fallbackProjects);
         }
