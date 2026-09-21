@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { ExternalLink, Code } from 'lucide-react';
+import ludoImage from '../assets/ludo.png';
 import restaurantImage from '../assets/linkedin 1.PNG';
 import busBookingImage from '../assets/booking system.PNG';
 import pacmanImage from '../assets/pacman.jpg';
@@ -15,6 +16,15 @@ const Projects = () => {
   const fallbackProjects = [
     {
       _id: '1',
+      title: 'Ludo Royale',
+      description: 'An immersive online multiplayer Ludo experience featuring real-time voice chat, bringing friends and family together for classic board game fun from anywhere in the world.',
+      technologies: ['React', 'NodeJS', 'Socket.io', 'MongoDB', 'WebRTC'],
+      githubLink: '#',
+      liveLink: 'https://ludo-royale-9cpy.onrender.com',
+      imageUrl: ludoImage
+    },
+    {
+      _id: '2',
       title: 'Shree Family Restaurant Website',
       description: 'A comprehensive full-stack restaurant management and online ordering system. Features include a dynamic digital menu, real-time table reservations, secure user authentication, and a dedicated admin dashboard for managing orders seamlessly.',
       technologies: ['React', 'Node.js', 'MongoDB', 'Express', 'Tailwind CSS'],
@@ -23,7 +33,7 @@ const Projects = () => {
       imageUrl: restaurantImage
     },
     {
-      _id: '2',
+      _id: '3',
       title: 'Bus Booking System',
       description: 'A full-stack MERN web application for booking bus tickets. It features a complete reservation flow, seat selection, and a mock credit card payment gateway that automatically generates digital tickets upon successful transactions.',
       technologies: ['React', 'Node.js', 'Express', 'MongoDB', 'Passport Js', 'Bootstrap 4', 'SCSS', 'Axios'],
@@ -32,7 +42,7 @@ const Projects = () => {
       imageUrl: busBookingImage
     },
     {
-      _id: '3',
+      _id: '4',
       title: 'Pacman Game',
       description: 'A classic Pacman arcade game clone developed entirely in Python. It features custom game logic, enemy ghost AI behavior, collision detection, and score tracking.',
       technologies: ['Python', 'Pygame', 'Tkinter', 'Game Development'],
@@ -41,7 +51,7 @@ const Projects = () => {
       imageUrl: pacmanImage
     },
     {
-      _id: '4',
+      _id: '5',
       title: 'Brick and Ball Game',
       description: 'An engaging retro-style arcade game developed in Java. It features custom 2D physics, dynamic paddle mechanics, collision detection, and smooth block-breaking gameplay.',
       technologies: ['Java', 'Swing/AWT', 'Game Development', 'OOP'],
