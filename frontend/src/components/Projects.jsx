@@ -19,7 +19,7 @@ const Projects = () => {
       title: 'Ludo Royale',
       description: 'An immersive online multiplayer Ludo experience featuring real-time voice chat, bringing friends and family together for classic board game fun from anywhere in the world.',
       technologies: ['React', 'NodeJS', 'Socket.io', 'MongoDB', 'WebRTC'],
-      githubLink: '#',
+      githubLink: 'https://github.com/Aadi0118/Ludo-Royale',
       liveLink: 'https://ludo-royale-9cpy.onrender.com',
       imageUrl: ludoImage
     },
