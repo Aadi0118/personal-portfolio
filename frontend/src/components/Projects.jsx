@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { ExternalLink, Code } from 'lucide-react';
-import ludoImage from '../assets/ludo.png';
+import ludoImage from '../assets/ludo.PNG';
 import restaurantImage from '../assets/linkedin 1.PNG';
 import busBookingImage from '../assets/booking system.PNG';
 import pacmanImage from '../assets/pacman.jpg';
@@ -15,7 +15,7 @@ const Projects = () => {
   // Fallback data in case the backend isn't running yet
   const fallbackProjects = [
     {
-      _id: '1',
+      _id: 'ludo-new',
       title: 'Ludo Royale',
       description: 'An immersive online multiplayer Ludo experience featuring real-time voice chat, bringing friends and family together for classic board game fun from anywhere in the world.',
       technologies: ['React', 'NodeJS', 'Socket.io', 'MongoDB', 'WebRTC'],
