@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { ExternalLink, Code } from 'lucide-react';
-import ludoImage from '../assets/ludo.PNG';
 import restaurantImage from '../assets/linkedin 1.PNG';
 import busBookingImage from '../assets/booking system.PNG';
 import pacmanImage from '../assets/pacman.jpg';
 import brickAndBallImage from '../assets/brick and ball game.PNG';
+import LudoImg from '../assets/ludo.PNG';
 import './Projects.css';
 
 const Projects = () => {
@@ -15,13 +15,13 @@ const Projects = () => {
   // Fallback data in case the backend isn't running yet
   const fallbackProjects = [
     {
-      _id: 'ludo-new',
+      _id: '1',
       title: 'Ludo Royale',
       description: 'An immersive online multiplayer Ludo experience featuring real-time voice chat, bringing friends and family together for classic board game fun from anywhere in the world.',
       technologies: ['React', 'NodeJS', 'Socket.io', 'MongoDB', 'WebRTC'],
       githubLink: 'https://github.com/Aadi0118/Ludo-Royale',
       liveLink: 'https://ludo-royale-9cpy.onrender.com',
-      imageUrl: ludoImage
+      imageUrl: LudoImg
     },
     {
       _id: '2',
@@ -68,15 +68,8 @@ const Projects = () => {
         const res = await fetch(`${apiUrl}/api/projects`);
         if (res.ok) {
           const data = await res.json();
-          
-          let finalProjects = data.length > 0 ? data : fallbackProjects;
-          
-          // Ensure Ludo Royale is in the list even if backend doesn't have it yet
-          if (data.length > 0 && !data.some(p => p.title === 'Ludo Royale')) {
-             finalProjects = [fallbackProjects[0], ...data];
-          }
-          
-          setProjects(finalProjects);
+          // If no projects in DB, use fallback
+          setProjects(data.length > 0 ? data : fallbackProjects);
         } else {
           setProjects(fallbackProjects);
         }
@@ -117,7 +110,7 @@ const Projects = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.2 }}
-                whileHover={{ 
+                whileHover={{
                   y: -10,
                   scale: 1.02,
                   boxShadow: "0 20px 40px rgba(99, 102, 241, 0.2)"

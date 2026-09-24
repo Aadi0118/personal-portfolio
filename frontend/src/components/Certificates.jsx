@@ -82,7 +82,7 @@ const Certificates = () => {
       issuer: 'Coursera',
       date: 'October 29, 2024',
       imageUrl: Html,
-      verifyLink: 'https://coursera.org/verify/REZNRFT809YSL'
+      verifyLink: 'https://coursera.org/verify/REZNRFT809YS'
     },
     {
       id: 9,
