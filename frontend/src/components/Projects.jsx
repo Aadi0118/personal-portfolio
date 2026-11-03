@@ -6,6 +6,7 @@ import busBookingImage from '../assets/booking system.PNG';
 import pacmanImage from '../assets/pacman.jpg';
 import brickAndBallImage from '../assets/brick and ball game.PNG';
 import LudoImg from '../assets/ludo.PNG';
+import posSystemImage from '../assets/pos-system.png';
 import './Projects.css';
 
 const Projects = () => {
@@ -16,6 +17,15 @@ const Projects = () => {
   const fallbackProjects = [
     {
       _id: '1',
+      title: 'Restaurant POS System',
+      description: 'A production-grade Restaurant Point of Sale (POS) and Kitchen Display System (KDS) engineered with real-time WebSocket synchronization. Features role-based PIN access control (Admin, Waiter, Cook, Cleaner), live floor and table occupancy tracking, instant kitchen ticket streams, and executive revenue analytics.',
+      technologies: ['React Native', 'Expo', 'Node.js', 'Express', 'MongoDB', 'Socket.io'],
+      githubLink: 'https://github.com/Aadi0118/POS-System',
+      liveLink: 'https://c-aadi0110-pbygz8-mw0v32yddof8e4gu.on.expo.app/',
+      imageUrl: posSystemImage
+    },
+    {
+      _id: '2',
       title: 'Ludo Royale',
       description: 'An immersive online multiplayer Ludo experience featuring real-time voice chat, bringing friends and family together for classic board game fun from anywhere in the world.',
       technologies: ['React', 'NodeJS', 'Socket.io', 'MongoDB', 'WebRTC'],
@@ -24,7 +34,7 @@ const Projects = () => {
       imageUrl: LudoImg
     },
     {
-      _id: '2',
+      _id: '3',
       title: 'Shree Family Restaurant Website',
       description: 'A comprehensive full-stack restaurant management and online ordering system. Features include a dynamic digital menu, real-time table reservations, secure user authentication, and a dedicated admin dashboard for managing orders seamlessly.',
       technologies: ['React', 'Node.js', 'MongoDB', 'Express', 'Tailwind CSS'],
@@ -33,7 +43,7 @@ const Projects = () => {
       imageUrl: restaurantImage
     },
     {
-      _id: '3',
+      _id: '4',
       title: 'Bus Booking System',
       description: 'A full-stack MERN web application for booking bus tickets. It features a complete reservation flow, seat selection, and a mock credit card payment gateway that automatically generates digital tickets upon successful transactions.',
       technologies: ['React', 'Node.js', 'Express', 'MongoDB', 'Passport Js', 'Bootstrap 4', 'SCSS', 'Axios'],
@@ -42,7 +52,7 @@ const Projects = () => {
       imageUrl: busBookingImage
     },
     {
-      _id: '4',
+      _id: '5',
       title: 'Pacman Game',
       description: 'A classic Pacman arcade game clone developed entirely in Python. It features custom game logic, enemy ghost AI behavior, collision detection, and score tracking.',
       technologies: ['Python', 'Pygame', 'Tkinter', 'Game Development'],
@@ -51,7 +61,7 @@ const Projects = () => {
       imageUrl: pacmanImage
     },
     {
-      _id: '5',
+      _id: '6',
       title: 'Brick and Ball Game',
       description: 'An engaging retro-style arcade game developed in Java. It features custom 2D physics, dynamic paddle mechanics, collision detection, and smooth block-breaking gameplay.',
       technologies: ['Java', 'Swing/AWT', 'Game Development', 'OOP'],
