@@ -20,7 +20,7 @@ const Projects = () => {
       title: 'Restaurant POS System',
       description: 'A production-grade Restaurant Point of Sale (POS) and Kitchen Display System (KDS) engineered with real-time WebSocket synchronization. Features role-based PIN access control (Admin, Waiter, Cook, Cleaner), live floor and table occupancy tracking, instant kitchen ticket streams, and executive revenue analytics.',
       technologies: ['React Native', 'Expo', 'Node.js', 'Express', 'MongoDB', 'Socket.io'],
-      githubLink: 'https://github.com/Aadi0118/POS-System',
+      githubLink: '#',
       liveLink: 'https://c-aadi0110-pbygz8-mw0v32yddof8e4gu.on.expo.app/',
       imageUrl: posSystemImage
     },
